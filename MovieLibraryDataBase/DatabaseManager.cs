@@ -54,5 +54,40 @@ namespace MovieLibrary
             context.Movies.Remove(movie);
             context.SaveChanges();
         }
+
+        public void AddUser(List<User> users)
+        {
+            for (int i = 0; i < users.Count; i++)
+            {
+                context.Users.Add(users[i]);
+            }
+
+            context.SaveChanges();
+        }
+
+        public List<User> ReadUsers()
+        {
+            List<User> users = context.Users.ToList();
+            return users;
+        }
+
+        public List<Occupation> ReadOccupations()
+        {
+            List<Occupation> occupations = context.Occupations.ToList();
+            return occupations;
+        }
+
+        public void AddUserMovie(UserMovie userMovie)
+        {
+            context.UserMovies.Add(userMovie);
+            context.SaveChanges();
+        }
+
+        public List<UserMovie> ReadUserMovies()
+        {
+            List<UserMovie> userMovies = context.UserMovies.ToList();
+            return userMovies;
+        }
+        
     }
 }

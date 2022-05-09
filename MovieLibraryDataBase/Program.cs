@@ -26,7 +26,7 @@ namespace MovieLibrary
 
                 switch (option)
                 {
-                    case "L":
+                    case "1":
                         List<string> movies = formatter.FormatMovieToString(dbManager.ReadMedia(), dbManager.ReadMovieGenres(), dbManager.ReadGenres());
                         
                         for (int i = 0; i < movies.Count; i++)
@@ -36,12 +36,12 @@ namespace MovieLibrary
                         Console.WriteLine();
                         
                         break;
-                    case "A":
+                    case "2":
                         dbManager.WriteMedia(service.AddMovie(dbManager));
                         Console.WriteLine();
                         
                         break;
-                    case "S":
+                    case "3":
 
                         Console.WriteLine();
                         string searchString = service.SearchOption().ToUpper();
@@ -69,11 +69,24 @@ namespace MovieLibrary
 
                         Console.WriteLine();
                         break;
-                    case "U":
+                    case "4":
                         service.UpdateMovie(mediaSearch, dbManager, formatter);
                         break;
-                    case "D":
+                    case "5":
                         service.DeleteMovie(mediaSearch, dbManager, formatter);
+                        break;
+                    case "6":
+                        service.AddUser(dbManager);
+                        break;
+                    case "7":
+                        Console.WriteLine();
+                        service.DisplayUsers(formatter.FormatUserToString(dbManager.ReadUsers(), dbManager.ReadOccupations()));
+                        Console.WriteLine();
+                        break;
+                    case "8":
+                        Console.WriteLine();
+                        service.DisplayUsers(formatter.FormatUserToString(dbManager.ReadUsers(), dbManager.ReadOccupations()));
+                        service.RateMovie(dbManager, mediaSearch, formatter);
                         break;
                 }
             } while ( option != "X");

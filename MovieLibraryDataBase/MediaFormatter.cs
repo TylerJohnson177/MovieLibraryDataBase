@@ -75,5 +75,26 @@ namespace MovieLibrary
 
                     return MovieList;
         }
+
+        public List<string> FormatUserToString(List<User> users, List<Occupation> occupations)
+        {
+            List<string> usersString = new List<string>();
+
+            for (int i = 0; i < users.Count; i++)
+            {
+                List<Occupation> occupations1 = occupations.Where(o => o == users[i].Occupation).ToList();
+                Occupation occupation = new Occupation();
+
+                if (occupations1.Count == 1)
+                {
+                    occupation = occupations1[0];
+                }
+                
+                string user = $"ID: {users[i].Id}, Occupation: {occupation.Name}, Age: {users[i].Age}, Gender: {users[i].Gender}, Zipcode: {users[i].ZipCode}";
+                usersString.Add(user);
+            }
+            
+            return usersString;
+        }
     }
 }
